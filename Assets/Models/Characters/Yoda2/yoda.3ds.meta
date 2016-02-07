@@ -4,7 +4,81 @@ timeCreated: 1454812855
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    100000: Body
+    100002: Body_1
+    100004: Camera
+    100006: Camera.target
+    100008: Eyes
+    100010: EyesOut
+    100012: Hair
+    100014: Head
+    100016: Light
+    100018: Light_1
+    100020: Light_2
+    100022: Light_3
+    100024: Light_4
+    100026: Light_5
+    100028: Limbs
+    100030: Null_Objec
+    100032: Stick
+    100034: Tooth
+    100036: Yoda
+    100038: //RootNode
+    400000: Body
+    400002: Body_1
+    400004: Camera
+    400006: Camera.target
+    400008: Eyes
+    400010: EyesOut
+    400012: Hair
+    400014: Head
+    400016: Light
+    400018: Light_1
+    400020: Light_2
+    400022: Light_3
+    400024: Light_4
+    400026: Light_5
+    400028: Limbs
+    400030: Null_Objec
+    400032: Stick
+    400034: Tooth
+    400036: Yoda
+    400038: //RootNode
+    2300000: Body
+    2300002: Body_1
+    2300004: Eyes
+    2300006: EyesOut
+    2300008: Hair
+    2300010: Head
+    2300012: Limbs
+    2300014: Null_Objec
+    2300016: Stick
+    2300018: Tooth
+    2300020: Yoda
+    3300000: Body
+    3300002: Body_1
+    3300004: Eyes
+    3300006: EyesOut
+    3300008: Hair
+    3300010: Head
+    3300012: Limbs
+    3300014: Null_Objec
+    3300016: Stick
+    3300018: Tooth
+    3300020: Yoda
+    4300000: Yoda
+    4300002: Hair
+    4300004: Stick
+    4300006: Tooth
+    4300008: Body
+    4300010: Body_1
+    4300012: Limbs
+    4300014: Head
+    4300016: EyesOut
+    4300018: Eyes
+    4300020: Null_Objec
+    9500000: //RootNode
   materials:
     importMaterials: 1
     materialName: 0
