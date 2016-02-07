@@ -127,7 +127,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BoneMaterial: {fileID: 2100000, guid: f2ea145c63353784985576f08398a815, type: 2}
   BodySourceManager: {fileID: 1698423884}
-  ModelBody: {fileID: 2095107414}
 --- !u!1 &252019523
 GameObject:
   m_ObjectHideFlags: 0
@@ -672,7 +671,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100112, guid: 19f06c7f35c62e744af1ffcf93014f71, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 19f06c7f35c62e744af1ffcf93014f71, type: 3}
@@ -816,7 +815,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100086, guid: 56694a33dbbbdd94a8a2ec46025e9b43, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 56694a33dbbbdd94a8a2ec46025e9b43, type: 3}
@@ -1141,7 +1140,3 @@ Transform:
   - {fileID: 252019524}
   m_Father: {fileID: 0}
   m_RootOrder: 7
---- !u!1 &2095107414 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 100002, guid: 331fc8939098d8b41ae5bc201758b2e2, type: 3}
-  m_PrefabInternal: {fileID: 1235728995}
