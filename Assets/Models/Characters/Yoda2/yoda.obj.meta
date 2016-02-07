@@ -1,0 +1,118 @@
+fileFormatVersion: 2
+guid: 02ea13d700a5a6d4ea9257d3d267de94
+timeCreated: 1454812618
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Yoda_Body
+    100004: Yoda_Body_1
+    100006: Yoda_Eyes
+    100008: Yoda_EyesOut
+    100010: Yoda_Hair
+    100012: Yoda_Head
+    100014: Yoda_Limbs
+    100016: Yoda_Stick
+    100018: Yoda_Tooth
+    400000: //RootNode
+    400002: Yoda_Body
+    400004: Yoda_Body_1
+    400006: Yoda_Eyes
+    400008: Yoda_EyesOut
+    400010: Yoda_Hair
+    400012: Yoda_Head
+    400014: Yoda_Limbs
+    400016: Yoda_Stick
+    400018: Yoda_Tooth
+    2300000: Yoda_Body
+    2300002: Yoda_Body_1
+    2300004: Yoda_Eyes
+    2300006: Yoda_EyesOut
+    2300008: Yoda_Hair
+    2300010: Yoda_Head
+    2300012: Yoda_Limbs
+    2300014: Yoda_Stick
+    2300016: Yoda_Tooth
+    3300000: Yoda_Body
+    3300002: Yoda_Body_1
+    3300004: Yoda_Eyes
+    3300006: Yoda_EyesOut
+    3300008: Yoda_Hair
+    3300010: Yoda_Head
+    3300012: Yoda_Limbs
+    3300014: Yoda_Stick
+    3300016: Yoda_Tooth
+    4300000: Yoda_Body
+    4300002: Yoda_Body_1
+    4300004: Yoda_Eyes
+    4300006: Yoda_EyesOut
+    4300008: Yoda_Hair
+    4300010: Yoda_Head
+    4300012: Yoda_Limbs
+    4300014: Yoda_Stick
+    4300016: Yoda_Tooth
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

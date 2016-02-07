@@ -8,8 +8,9 @@ public class BodySourceView : MonoBehaviour
     public Material BoneMaterial;
     public GameObject BodySourceManager;
     public GameObject ModelBody;
+    private Animator modelAnimator;
 
-    private Dictionary<string, string> _ModelToJointName = new Dictionary<string, string>()
+    private Dictionary<string, string> _ModelToJointStormTrooper = new Dictionary<string, string>()
     {
         { "FootLeft", "leg_toes_left" },
         { "AnkleLeft", "leg_ankle_left" },
@@ -41,7 +42,40 @@ public class BodySourceView : MonoBehaviour
         { "Neck", "head_neck_lower" },
         { "Head", "head_neck_upper" }
     };
-    
+
+    private Dictionary<string, HumanBodyBones> _ModelToBoneEnum = new Dictionary<string, HumanBodyBones>()
+    {
+        { "FootLeft", HumanBodyBones.LeftToes },
+        { "AnkleLeft", HumanBodyBones.LeftFoot },
+        { "KneeLeft", HumanBodyBones.LeftLowerLeg },
+        { "HipLeft", HumanBodyBones.LeftUpperLeg },
+
+        { "FootRight", HumanBodyBones.RightToes },
+        { "AnkleRight", HumanBodyBones.RightFoot },
+        { "KneeRight", HumanBodyBones.RightLowerLeg },
+        { "HipRight", HumanBodyBones.RightUpperLeg },
+
+        { "HandTipLeft", HumanBodyBones.LeftMiddleDistal },
+        { "ThumbLeft", HumanBodyBones.LeftThumbDistal },
+        { "HandLeft", HumanBodyBones.LeftMiddleProximal },
+        { "WristLeft", HumanBodyBones.LeftHand },
+        { "ElbowLeft", HumanBodyBones.LeftLowerArm },
+        { "ShoulderLeft", HumanBodyBones.LeftUpperArm },
+
+        { "HandTipRight", HumanBodyBones.RightMiddleDistal },
+        { "ThumbRight", HumanBodyBones.RightThumbDistal },
+        { "HandRight", HumanBodyBones.RightMiddleProximal },
+        { "WristRight", HumanBodyBones.RightHand },
+        { "ElbowRight", HumanBodyBones.RightLowerArm },
+        { "ShoulderRight", HumanBodyBones.RightUpperArm },
+
+        { "SpineBase", HumanBodyBones.Hips },
+        { "SpineMid", HumanBodyBones.Spine },
+        //{ "SpineShoulder", HumanBodyBones.Chest },
+        { "Neck", HumanBodyBones.Neck },
+        { "Head", HumanBodyBones.Head }
+    };
+
     private Dictionary<ulong, GameObject> _Bodies = new Dictionary<ulong, GameObject>();
     private BodySourceManager _BodyManager;
     
@@ -76,6 +110,11 @@ public class BodySourceView : MonoBehaviour
         { Kinect.JointType.SpineShoulder, Kinect.JointType.Neck },
         { Kinect.JointType.Neck, Kinect.JointType.Head },
     };
+
+    void Start()
+    {
+        modelAnimator = ModelBody.GetComponent<Animator>();
+    }
     
     void Update () 
     {
@@ -186,7 +225,8 @@ public class BodySourceView : MonoBehaviour
             {
                 try
                 {
-                    jointObj = GameObject.Find(_ModelToJointName[jt.ToString()]).transform;
+                    //jointObj = GameObject.Find(_ModelToJointStormTrooper[jt.ToString()]).transform;
+                    jointObj = modelAnimator.GetBoneTransform(_ModelToBoneEnum[jt.ToString()]);
                     jointObj.position = GetVector3FromJoint(sourceJoint);
                 }
                 catch (KeyNotFoundException)
