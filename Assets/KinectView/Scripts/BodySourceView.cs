@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using Kinect = Windows.Kinect;
@@ -7,75 +7,7 @@ public class BodySourceView : MonoBehaviour
 {
     public Material BoneMaterial;
     public GameObject BodySourceManager;
-    public GameObject ModelBody;
-    private Animator modelAnimator;
-
-    private Dictionary<string, string> _ModelToJointStormTrooper = new Dictionary<string, string>()
-    {
-        { "FootLeft", "leg_toes_left" },
-        { "AnkleLeft", "leg_ankle_left" },
-        { "KneeLeft", "leg_knee_left" },
-        { "HipLeft", "leg_thigh_left" },
-
-        { "FootRight", "leg_toes_right" },
-        { "AnkleRight", "leg_ankle_right" },
-        { "KneeRight", "leg_knee_right" },
-        { "HipRight", "leg_thigh_right" },
-
-        { "HandTipLeft", "arm_finger_2c_left" },
-        { "ThumbLeft", "arm_finger_1b_left" },
-        { "HandLeft", "arm_wrist_left" },
-        { "WristLeft", "arm_wrist_left" },
-        { "ElbowLeft", "arm_elbow_left" },
-        { "ShoulderLeft", "arm_shoulder_2_left" },
-
-        { "HandTipRight", "arm_finger_2c_right" },
-        { "ThumbRight", "arm_finger_1b_right" },
-        { "HandRight", "arm_wrist_right" },
-        { "WristRight", "arm_wrist_right" },
-        { "ElbowRight", "arm_elbow_right" },
-        { "ShoulderRight", "arm_shoulder_2_right" },
-
-        { "SpineBase", "root_hips" },
-        { "SpineMid", "spine_lower" },
-        //{ "SpineShoulder", Kinect.JointType.Neck },
-        { "Neck", "head_neck_lower" },
-        { "Head", "head_neck_upper" }
-    };
-
-    private Dictionary<string, HumanBodyBones> _ModelToBoneEnum = new Dictionary<string, HumanBodyBones>()
-    {
-        { "FootLeft", HumanBodyBones.LeftToes },
-        { "AnkleLeft", HumanBodyBones.LeftFoot },
-        { "KneeLeft", HumanBodyBones.LeftLowerLeg },
-        { "HipLeft", HumanBodyBones.LeftUpperLeg },
-
-        { "FootRight", HumanBodyBones.RightToes },
-        { "AnkleRight", HumanBodyBones.RightFoot },
-        { "KneeRight", HumanBodyBones.RightLowerLeg },
-        { "HipRight", HumanBodyBones.RightUpperLeg },
-
-        { "HandTipLeft", HumanBodyBones.LeftMiddleDistal },
-        { "ThumbLeft", HumanBodyBones.LeftThumbDistal },
-        { "HandLeft", HumanBodyBones.LeftMiddleProximal },
-        { "WristLeft", HumanBodyBones.LeftHand },
-        { "ElbowLeft", HumanBodyBones.LeftLowerArm },
-        { "ShoulderLeft", HumanBodyBones.LeftUpperArm },
-
-        { "HandTipRight", HumanBodyBones.RightMiddleDistal },
-        { "ThumbRight", HumanBodyBones.RightThumbDistal },
-        { "HandRight", HumanBodyBones.RightMiddleProximal },
-        { "WristRight", HumanBodyBones.RightHand },
-        { "ElbowRight", HumanBodyBones.RightLowerArm },
-        { "ShoulderRight", HumanBodyBones.RightUpperArm },
-
-        { "SpineBase", HumanBodyBones.Hips },
-        { "SpineMid", HumanBodyBones.Spine },
-        //{ "SpineShoulder", HumanBodyBones.Chest },
-        { "Neck", HumanBodyBones.Neck },
-        { "Head", HumanBodyBones.Head }
-    };
-
+    
     private Dictionary<ulong, GameObject> _Bodies = new Dictionary<ulong, GameObject>();
     private BodySourceManager _BodyManager;
     
@@ -110,11 +42,6 @@ public class BodySourceView : MonoBehaviour
         { Kinect.JointType.SpineShoulder, Kinect.JointType.Neck },
         { Kinect.JointType.Neck, Kinect.JointType.Head },
     };
-
-    void Start()
-    {
-        modelAnimator = ModelBody.GetComponent<Animator>();
-    }
     
     void Update () 
     {
@@ -161,7 +88,6 @@ public class BodySourceView : MonoBehaviour
             }
         }
 
-        bool firstPerson = true;
         foreach(var body in data)
         {
             if (body == null)
@@ -172,16 +98,10 @@ public class BodySourceView : MonoBehaviour
             if(body.IsTracked)
             {
                 if(!_Bodies.ContainsKey(body.TrackingId))
-                {  
+                {
                     _Bodies[body.TrackingId] = CreateBodyObject(body.TrackingId);
                 }
                 
-                if (firstPerson)
-                {
-                    RefreshBodyObject(body, ModelBody);
-                    firstPerson = false;
-                }
-
                 RefreshBodyObject(body, _Bodies[body.TrackingId]);
             }
         }
@@ -203,6 +123,7 @@ public class BodySourceView : MonoBehaviour
             jointObj.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
             jointObj.name = jt.ToString();
             jointObj.transform.parent = body.transform;
+			jointObj.AddComponent<drawDebugLines>();
         }
         
         return body;
@@ -214,51 +135,28 @@ public class BodySourceView : MonoBehaviour
         {
             Kinect.Joint sourceJoint = body.Joints[jt];
             Kinect.Joint? targetJoint = null;
-            
+			Kinect.JointOrientation sourceJointOrientation = body.JointOrientations[jt];
+
+
             if(_BoneMap.ContainsKey(jt))
             {
                 targetJoint = body.Joints[_BoneMap[jt]];
             }
+            
+            Transform jointObj = bodyObject.transform.FindChild(jt.ToString());
+            jointObj.localPosition = GetVector3FromJoint(sourceJoint);
+			jointObj.rotation = GetQuaternion3FromJoint(sourceJointOrientation);
 
-            Transform jointObj = bodyObject.transform.Find(jt.ToString());
-            if (jointObj == null)
+            LineRenderer lr = jointObj.GetComponent<LineRenderer>();
+            if(targetJoint.HasValue)
             {
-                try
-                {
-                    //jointObj = GameObject.Find(_ModelToJointStormTrooper[jt.ToString()]).transform;
-                    jointObj = modelAnimator.GetBoneTransform(_ModelToBoneEnum[jt.ToString()]);
-                    jointObj.position = GetVector3FromJoint(sourceJoint);
-                }
-                catch (KeyNotFoundException)
-                {
-                    // Do nothing
-                }
+                lr.SetPosition(0, jointObj.localPosition);
+                lr.SetPosition(1, GetVector3FromJoint(targetJoint.Value));
+                lr.SetColors(GetColorForState (sourceJoint.TrackingState), GetColorForState(targetJoint.Value.TrackingState));
             }
             else
             {
-                jointObj.localPosition = GetVector3FromJoint(sourceJoint);
-            }
-
-            if (jointObj != null)
-            {
-                try
-                {
-                    LineRenderer lr = jointObj.GetComponent<LineRenderer>();
-                    if (targetJoint.HasValue)
-                    {
-                        lr.SetPosition(0, jointObj.localPosition);
-                        lr.SetPosition(1, GetVector3FromJoint(targetJoint.Value));
-                        lr.SetColors(GetColorForState(sourceJoint.TrackingState), GetColorForState(targetJoint.Value.TrackingState));
-                    }
-                    else
-                    {
-                        lr.enabled = false;
-                    }
-                }
-                catch (MissingComponentException)
-                {
-                    // Do nothing
-                }
+                lr.enabled = false;
             }
         }
     }
@@ -282,4 +180,9 @@ public class BodySourceView : MonoBehaviour
     {
         return new Vector3(joint.Position.X * 10, joint.Position.Y * 10, joint.Position.Z * 10);
     }
+	private static Quaternion GetQuaternion3FromJoint(Kinect.JointOrientation joint)
+	{
+		return new Quaternion(joint.Orientation.X, joint.Orientation.Y , joint.Orientation.Z , joint.Orientation.W);
+	}
+
 }
