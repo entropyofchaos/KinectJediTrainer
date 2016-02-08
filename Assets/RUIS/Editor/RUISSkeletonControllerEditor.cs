@@ -47,6 +47,8 @@ public class RUISSkeletonControllerEditor : Editor
     SerializedProperty neckBone;
     SerializedProperty torsoBone;
 
+
+    SerializedProperty leftClavicleBone;
     SerializedProperty leftShoulderBone;
     SerializedProperty leftElbowBone;
     SerializedProperty leftHandBone;
@@ -89,7 +91,8 @@ public class RUISSkeletonControllerEditor : Editor
 	SerializedProperty customRightHip;
 	SerializedProperty customRightKnee;
 	SerializedProperty customRightFoot;
-	SerializedProperty customLeftShoulder;
+    SerializedProperty customLeftClavicle;
+    SerializedProperty customLeftShoulder;
 	SerializedProperty customLeftElbow;
 	SerializedProperty customLeftHand;
 	SerializedProperty customLeftHip;
@@ -134,6 +137,7 @@ public class RUISSkeletonControllerEditor : Editor
         neckBone = serializedObject.FindProperty("neck");
         torsoBone = serializedObject.FindProperty("torso");
 
+        leftClavicleBone = serializedObject.FindProperty("leftClavicle");
         leftShoulderBone = serializedObject.FindProperty("leftShoulder");
         leftElbowBone = serializedObject.FindProperty("leftElbow");
         leftHandBone = serializedObject.FindProperty("leftHand");
@@ -176,7 +180,8 @@ public class RUISSkeletonControllerEditor : Editor
 		customRightHip  = serializedObject.FindProperty("customRightHip");
 		customRightKnee  = serializedObject.FindProperty("customRightKnee");
 		customRightFoot  = serializedObject.FindProperty("customRightFoot");
-		customLeftShoulder  = serializedObject.FindProperty("customLeftShoulder");
+        customLeftClavicle = serializedObject.FindProperty("customLeftClavicle");
+        customLeftShoulder  = serializedObject.FindProperty("customLeftShoulder");
 		customLeftElbow  = serializedObject.FindProperty("customLeftElbow");
 		customLeftHand  = serializedObject.FindProperty("customLeftHand");
 		customLeftHip  = serializedObject.FindProperty("customLeftHip");
@@ -318,7 +323,8 @@ public class RUISSkeletonControllerEditor : Editor
 			EditorGUILayout.LabelField("Source for Arms", EditorStyles.boldLabel);
 			EditorGUILayout.BeginHorizontal();
 			EditorGUILayout.BeginVertical(GUILayout.Width(Screen.width / 2 - 20));
-			EditorGUILayout.PropertyField(customLeftShoulder, new GUIContent("Left Shoulder", "The left shoulder bone (upper arm)"));
+            EditorGUILayout.PropertyField(customLeftClavicle, new GUIContent("Left Clavicle", "The left clavicle bone (upper arm)"));
+            EditorGUILayout.PropertyField(customLeftShoulder, new GUIContent("Left Shoulder", "The left shoulder bone (upper arm)"));
 			EditorGUILayout.PropertyField(customLeftElbow, new GUIContent("Left Elbow", "The left elbow bone (forearm)"));
 			EditorGUILayout.PropertyField(customLeftHand, new GUIContent("Left Hand", "The left wrist bone (hand)"));
 			EditorGUILayout.EndVertical();
@@ -372,6 +378,7 @@ public class RUISSkeletonControllerEditor : Editor
         EditorGUILayout.LabelField("Arm Joints", EditorStyles.boldLabel);
         EditorGUILayout.BeginHorizontal();
         EditorGUILayout.BeginVertical(GUILayout.Width(Screen.width / 2 - 20));
+         
             EditorGUILayout.PropertyField(leftShoulderBone, new GUIContent("Left Shoulder", "The left shoulder bone (upper arm)"));
             EditorGUILayout.PropertyField(leftElbowBone, new GUIContent("Left Elbow", "The left elbow bone (forearm)"));
             EditorGUILayout.PropertyField(leftHandBone, new GUIContent("Left Hand", "The left wrist bone (hand)"));

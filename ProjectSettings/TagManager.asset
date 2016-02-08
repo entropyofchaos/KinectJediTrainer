@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - WaterParticle
+  - StatusText
   layers:
   - Default
   - TransparentFX
@@ -13,11 +15,11 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - CharacterBody
+  - Environment
+  - CharacterStabilizer
+  - SelectedObjects
+  - RUISMenu
   - 
   - 
   - 
