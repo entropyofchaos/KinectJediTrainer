@@ -80,7 +80,10 @@ namespace CompleteProject
             {
                 // ... damage the player.
                 playerHealth.TakeDamage (attackDamage);
+				Destroy (gameObject);
             }
+
+
         }
     }
 }

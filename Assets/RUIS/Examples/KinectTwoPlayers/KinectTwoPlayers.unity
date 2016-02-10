@@ -1090,7 +1090,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
 --- !u!4 &466084842 stripped
 Transform:
   m_PrefabParentObject: {fileID: 486084, guid: b511dc9a752a2c04fb18a04d1219b8a2, type: 2}
@@ -1297,7 +1297,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 14
 --- !u!1 &507918683
 GameObject:
   m_ObjectHideFlags: 0
@@ -2427,7 +2427,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 828351577}
   m_Layer: 0
-  m_Name: EnemyLaserSpawnPoint
+  m_Name: LaserSpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -2440,11 +2440,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 828351576}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3, z: 0.5}
+  m_LocalPosition: {x: 6.5, y: 3, z: 30.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 13
 --- !u!1 &844874570
 GameObject:
   m_ObjectHideFlags: 0
@@ -4604,6 +4604,50 @@ CapsuleCollider:
   m_Height: 0.61
   m_Direction: 0
   m_Center: {x: -0.21, y: 0, z: 0}
+--- !u!1 &1699887961
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1699887963}
+  - 114: {fileID: 1699887962}
+  m_Layer: 0
+  m_Name: LaserManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1699887962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1699887961}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4760cae201baa0e42a0617163910552c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerHealth: {fileID: 695067711}
+  shotPrefab: {fileID: 163672, guid: fcfb51ced5e88fc4a93a8eea0822d58a, type: 2}
+  spawnTime: 3
+  player: {fileID: 695067705}
+  spawnPoints: {fileID: 828351577}
+--- !u!4 &1699887963
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1699887961}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 15
 --- !u!1 &1742121061
 GameObject:
   m_ObjectHideFlags: 0
@@ -5098,6 +5142,14 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 11467540, guid: a1eb5ecc4b3a6344cbebcd53250fb7dd, type: 2}
+      propertyPath: spawnPoints.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11447430, guid: a1eb5ecc4b3a6344cbebcd53250fb7dd, type: 2}
+      propertyPath: spawnPoints.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 426326, guid: a1eb5ecc4b3a6344cbebcd53250fb7dd, type: 2}
       propertyPath: m_LocalPosition.x
       value: -2.8364797
@@ -5144,7 +5196,7 @@ Prefab:
       objectReference: {fileID: 695067711}
     - target: {fileID: 11467540, guid: a1eb5ecc4b3a6344cbebcd53250fb7dd, type: 2}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11422126, guid: a1eb5ecc4b3a6344cbebcd53250fb7dd, type: 2}
       propertyPath: m_Enabled
@@ -5169,14 +5221,14 @@ Prefab:
     - target: {fileID: 11467540, guid: a1eb5ecc4b3a6344cbebcd53250fb7dd, type: 2}
       propertyPath: enemy
       value: 
-      objectReference: {fileID: 124328, guid: f617de5ce8fbf22469e48c8a980cd64f, type: 2}
+      objectReference: {fileID: 163672, guid: fcfb51ced5e88fc4a93a8eea0822d58a, type: 2}
     - target: {fileID: 11422126, guid: a1eb5ecc4b3a6344cbebcd53250fb7dd, type: 2}
       propertyPath: enemy
       value: 
       objectReference: {fileID: 100074, guid: be66986effd141b4992d2d78be127139, type: 3}
     - target: {fileID: 11467540, guid: a1eb5ecc4b3a6344cbebcd53250fb7dd, type: 2}
       propertyPath: spawnTime
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 11422126, guid: a1eb5ecc4b3a6344cbebcd53250fb7dd, type: 2}
       propertyPath: spawnTime
@@ -5185,7 +5237,7 @@ Prefab:
     - target: {fileID: 11467540, guid: a1eb5ecc4b3a6344cbebcd53250fb7dd, type: 2}
       propertyPath: spawnPoints.Array.data[0]
       value: 
-      objectReference: {fileID: 466084842}
+      objectReference: {fileID: 828351577}
     - target: {fileID: 11422126, guid: a1eb5ecc4b3a6344cbebcd53250fb7dd, type: 2}
       propertyPath: spawnPoints.Array.data[0]
       value: 
@@ -5233,7 +5285,11 @@ Prefab:
     - target: {fileID: 11447430, guid: a1eb5ecc4b3a6344cbebcd53250fb7dd, type: 2}
       propertyPath: spawnPoints
       value: 
-      objectReference: {fileID: 498792800}
+      objectReference: {fileID: 0}
+    - target: {fileID: 11467540, guid: a1eb5ecc4b3a6344cbebcd53250fb7dd, type: 2}
+      propertyPath: spawnPoints
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a1eb5ecc4b3a6344cbebcd53250fb7dd, type: 2}
   m_IsPrefabParent: 0
@@ -5241,22 +5297,6 @@ Prefab:
 GameObject:
   m_PrefabParentObject: {fileID: 182774, guid: a1eb5ecc4b3a6344cbebcd53250fb7dd, type: 2}
   m_PrefabInternal: {fileID: 1806598342}
---- !u!114 &1806598344
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1806598343}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8bf862ffeb7e74943a1729f1cff11eb4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerHealth: {fileID: 695067711}
-  enemy: {fileID: 153682, guid: 48dbed8de40fe164e8de51ae15280867, type: 2}
-  spawnTime: 4
-  spawnPoints: {fileID: 0}
-  - {fileID: 2136746761}
 --- !u!114 &1806598345
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5271,7 +5311,7 @@ MonoBehaviour:
   playerHealth: {fileID: 695067711}
   enemy: {fileID: 199106, guid: 203d56ac2c89a7c46ae13413a83a924c, type: 2}
   spawnTime: 4
-  spawnPoints: {fileID: 0}
+  spawnPoints: []
 --- !u!4 &1810657284 stripped
 Transform:
   m_PrefabParentObject: {fileID: 495000, guid: 5485ec8e5f8e6ba449ba8ee38fa76dfa, type: 2}
@@ -5860,33 +5900,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 898517181}
   m_RootOrder: 0
---- !u!1 &2037681323
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 2037681324}
-  m_Layer: 0
-  m_Name: EnemyLaserManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2037681324
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2037681323}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.1981287, y: 2.0485432, z: -49.03624}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 13
 --- !u!1 &2060389980
 GameObject:
   m_ObjectHideFlags: 0
