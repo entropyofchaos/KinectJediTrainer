@@ -38,7 +38,7 @@ namespace CompleteProject
 			//var direction = player.transform.position - spawnPoints.position;
 			//var shot = (Transform)Instantiate(shotPrefab, spawnPoints.position, Quaternion.LookRotation(direction));
 
-			Transform shot = Instantiate(shotPrefab, spawnPoints.position, Quaternion.LookRotation((players.position - spawnPoints.position))) as Transform;
+			Transform shot = Instantiate(shotPrefab, spawnPoints.position, Quaternion.LookRotation((player.position - spawnPoints.position))) as Transform;
 		    //Transform PlayerCenter = player.transform.FindChild ("Center");
 
 		}
