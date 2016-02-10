@@ -5259,8 +5259,8 @@ MonoBehaviour:
   spawnPoints: {fileID: 0}
 =======
   spawnPoints:
-  - {fileID: 2136746761}
 >>>>>>> master
+  - {fileID: 2136746761}
 --- !u!114 &1806598345
 MonoBehaviour:
   m_ObjectHideFlags: 0
