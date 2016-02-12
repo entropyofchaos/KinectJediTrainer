@@ -6,7 +6,7 @@ namespace CompleteProject
 	public class LaserAttack : MonoBehaviour 
 	{
 
-		public float timeBetweenAttacks = 0.5f;     // The time in seconds between each attack.
+		public float timeBetweenAttacks = 1f;     // The time in seconds between each attack.
 		public int attackDamage = 10;               // The amount of health taken away per attack.
 
 
@@ -14,7 +14,6 @@ namespace CompleteProject
 		PlayerHealth playerHealth;                  // Reference to the player's health.
 		bool playerInRange;                         // Whether player is within the trigger collider and can be attacked.
 		float timer;                                // Timer for counting up to the next attack.
-
 
 		void Awake ()
 		{

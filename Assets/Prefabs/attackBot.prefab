@@ -409,7 +409,7 @@ MonoBehaviour:
   currentHealth: 0
   sinkSpeed: 2.5
   scoreValue: 10
-  deathClip: {fileID: 0}
+  deathClip: {fileID: 8300000, guid: 054f76df223893741b5575819a1f0378, type: 3}
 --- !u!114 &11467238
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -519,6 +519,10 @@ Prefab:
       propertyPath: m_Height
       value: 1.2
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: deathClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 054f76df223893741b5575819a1f0378, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 116270}

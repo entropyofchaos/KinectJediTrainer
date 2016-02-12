@@ -11,7 +11,7 @@ public class PlayerShooting : MonoBehaviour
     Ray shootRay;
     RaycastHit shootHit;
     int shootableMask;
-    ParticleSystem gunParticles;
+	ParticleSystem LightningParticle;
     LineRenderer gunLine;
     AudioSource gunAudio;
     Light gunLight;
@@ -20,8 +20,8 @@ public class PlayerShooting : MonoBehaviour
 
     void Awake ()
     {
-        shootableMask = LayerMask.GetMask ("Shootable");
-        gunParticles = GetComponent<ParticleSystem> ();
+		shootableMask = LayerMask.GetMask ("Shootable");
+		LightningParticle = GetComponentInChildren<ParticleSystem> ();
         gunLine = GetComponent <LineRenderer> ();
         gunAudio = GetComponent<AudioSource> ();
         gunLight = GetComponent<Light> ();
@@ -48,6 +48,7 @@ public class PlayerShooting : MonoBehaviour
     {
         gunLine.enabled = false;
         gunLight.enabled = false;
+
     }
 
 
@@ -59,8 +60,8 @@ public class PlayerShooting : MonoBehaviour
 
         gunLight.enabled = true;
 
-        gunParticles.Stop ();
-        gunParticles.Play ();
+		LightningParticle.Stop ();
+		LightningParticle.Play ();
 
         gunLine.enabled = true;
         gunLine.SetPosition (0, transform.position);
