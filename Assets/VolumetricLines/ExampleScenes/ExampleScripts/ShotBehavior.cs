@@ -1,17 +1,30 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ShotBehavior : MonoBehaviour {     
+namespace CompleteProject
+{
+	public class ShotBehavior : MonoBehaviour 
+	{    
+		public float speed = 30f;
+		//GameObject player;     
 
-	// Use this for initialization
-	void Start () {
+		// Use this for initialization
+		void Start () 
+		{
+			//player = GameObject.FindGameObjectWithTag ("Player");
+		}
 		
-	}
-	
-	// Update is called once per frame
-	void Update () {
+		// Update is called once per frame
+		void Update () 
+		{
 
-		transform.position += transform.forward * Time.deltaTime * 100f;
-		//bullet.forward == (PlayerCenter.position - bulletSpawn.position).normalized
+			transform.position += transform.forward * Time.deltaTime * speed;
+		}
+
+		void OnCollisionEnter(Collision otherObj)
+		{
+			if (otherObj.gameObject.tag == "Player")
+				Destroy (gameObject, 2f);
+		}	
 	}
 }
