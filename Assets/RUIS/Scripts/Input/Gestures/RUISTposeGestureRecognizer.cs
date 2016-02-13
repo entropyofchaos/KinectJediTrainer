@@ -34,8 +34,10 @@ public class RUISTposeGestureRecognizer : RUISGestureRecognizer
     private bool gestureEnabled = true;
 
 
-    public Vector3 leftHandHeight { get; private set; }
-    public Vector3 rightHandHeight { get; private set; }
+    public Vector3 leftHandPos { get; private set; }
+    public Vector3 rightHandPos { get; private set; }
+    public Vector3 leftShoulderPos { get; private set; }
+    public Vector3 rightShoulderPos { get; private set; }
     public GameObject leftHandWithPointTracker;
     public GameObject rightHandWithPointTracker;
 
@@ -152,16 +154,27 @@ public class RUISTposeGestureRecognizer : RUISGestureRecognizer
             return;
         }
 
-		leftHandHeight = skeletonManager.skeletons[bodyTrackingDeviceID, playerId].leftHand.position;
-		rightHandHeight = skeletonManager.skeletons[bodyTrackingDeviceID, playerId].rightHand.position;
+		leftHandPos = skeletonManager.skeletons[bodyTrackingDeviceID, playerId].leftHand.position;
+		rightHandPos = skeletonManager.skeletons[bodyTrackingDeviceID, playerId].rightHand.position;
+        leftShoulderPos = skeletonManager.skeletons[bodyTrackingDeviceID, playerId].leftShoulder.position;
+        rightShoulderPos = skeletonManager.skeletons[bodyTrackingDeviceID, playerId].rightShoulder.position;
 
-        float handHightDifference = leftHandHeight.y - rightHandHeight.y;
-        if (0.0 <= handHightDifference && handHightDifference <= handPositionDifferenceThreshold && 
-            pointTrackerLeftHand.averageVelocity.y <= maxMovementVelocity && 
-            pointTrackerRightHand.averageVelocity.y <= maxMovementVelocity)
+        print("LeftHand = " + leftHandPos + "\nRightHand = " + rightHandPos + "\nLeftShoulder = " + leftShoulderPos + "\nRightShoulder = " + rightShoulderPos);
+
+        Vector3 leftHandDiffFromShoulder = leftShoulderPos - leftHandPos;
+        Vector3 rightHandDiffFromShoulder = rightShoulderPos - rightHandPos;
+
+        if (0.0 <= System.Math.Abs(leftHandDiffFromShoulder.y) && System.Math.Abs(leftHandDiffFromShoulder.y) <= handPositionDifferenceThreshold &&
+            0.0 <= System.Math.Abs(leftHandDiffFromShoulder.z) && System.Math.Abs(leftHandDiffFromShoulder.z) <= handPositionDifferenceThreshold &&
+            0.0 <= System.Math.Abs(rightHandDiffFromShoulder.y) && System.Math.Abs(rightHandDiffFromShoulder.y) <= handPositionDifferenceThreshold &&
+            0.0 <= System.Math.Abs(rightHandDiffFromShoulder.z) && System.Math.Abs(rightHandDiffFromShoulder.z) <= handPositionDifferenceThreshold &&
+            System.Math.Abs(pointTrackerLeftHand.averageVelocity.y) <= maxMovementVelocity &&
+            System.Math.Abs(pointTrackerRightHand.averageVelocity.y) <= maxMovementVelocity)
         {
             currentState = State.MakingATPose;
             timeCounter = 0;
+
+            print("TPose Made");
             return;
         }
     }
