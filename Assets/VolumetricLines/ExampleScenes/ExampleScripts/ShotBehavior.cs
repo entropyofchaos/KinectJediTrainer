@@ -5,7 +5,7 @@ namespace CompleteProject
 {
 	public class ShotBehavior : MonoBehaviour 
 	{    
-		public float speed = 30f;
+		public float speed = 20f;
 		//GameObject player;     
 
 		// Use this for initialization
@@ -24,7 +24,7 @@ namespace CompleteProject
 		void OnCollisionEnter(Collision otherObj)
 		{
 			if (otherObj.gameObject.tag == "Player")
-				Destroy (gameObject, 2f);
+				Destroy (gameObject, 1f);
 		}	
 	}
 }
