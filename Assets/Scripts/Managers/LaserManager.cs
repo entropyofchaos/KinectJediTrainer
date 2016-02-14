@@ -29,7 +29,8 @@ namespace CompleteProject
 				return;
 			}
 				
-			Rigidbody shot = (Rigidbody)Instantiate(shotPrefab, spawnPoints.position, Quaternion.LookRotation((player.position - spawnPoints.position)));
+			GameObject shotObject = (GameObject)Instantiate(shotPrefab, spawnPoints.position, Quaternion.LookRotation((player.position - spawnPoints.position)));
+            Rigidbody shot = shotObject.GetComponent<Rigidbody>();
 
 			//var angle = player.position - spawnPoints.position;
 			//shot.GetComponent<Rigidbody> ().AddForce (angle * shotSpeed);
