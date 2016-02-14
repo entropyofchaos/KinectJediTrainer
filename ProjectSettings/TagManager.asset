@@ -4,7 +4,9 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - EnemyManager
+  - WaterParticle
+  - StatusText
+  - Lightsaber
   layers:
   - Default
   - TransparentFX
@@ -19,7 +21,7 @@ TagManager:
   - CharacterStabilizer
   - SelectedObjects
   - RUISMenu
-  - EnemyManager
+  - 
   - 
   - 
   - 
