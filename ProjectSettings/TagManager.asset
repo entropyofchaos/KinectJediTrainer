@@ -6,6 +6,7 @@ TagManager:
   tags:
   - WaterParticle
   - StatusText
+  - Lightsaber
   layers:
   - Default
   - TransparentFX

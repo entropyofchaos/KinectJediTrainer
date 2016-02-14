@@ -9,17 +9,19 @@ namespace CompleteProject
 		public float timeBetweenAttacks = 1f;     // The time in seconds between each attack.
 		public int attackDamage = 10;               // The amount of health taken away per attack.
 
-
-		GameObject player;                          // Reference to the player GameObject.
+        GameObject lightsaber;
+        GameObject player;                          // Reference to the player GameObject.
 		PlayerHealth playerHealth;                  // Reference to the player's health.
 		bool playerInRange;                         // Whether player is within the trigger collider and can be attacked.
-		float timer;                                // Timer for counting up to the next attack.
+        bool LightsaberInRange;
+        float timer;                                // Timer for counting up to the next attack.
 
 		void Awake ()
 		{
 			// Setting up the references.
 			player = GameObject.FindGameObjectWithTag ("Player");
-			playerHealth = player.GetComponent <PlayerHealth> ();
+            lightsaber = GameObject.FindGameObjectWithTag("Lightsaber");
+            playerHealth = player.GetComponent <PlayerHealth> ();
 		}
 
 
@@ -31,18 +33,28 @@ namespace CompleteProject
 				// ... the player is in range.
 				playerInRange = true;
 			}
-		}
+            if (other.gameObject == lightsaber)
+            {
+                // ... the player is in range.
+                LightsaberInRange = true;
+            }
+        }
 
 
 		void OnTriggerExit (Collider other)
 		{
 			// If the exiting collider is the player...
-			if(other.gameObject.transform.IsChildOf(player.transform))
+			if(other.gameObject.transform.IsChildOf(player.transform) && other.gameObject != lightsaber.gameObject)
 			{
 				// ... the player is no longer in range.
 				playerInRange = false;
 			}
-		}
+            if (other.gameObject == lightsaber)
+            {
+                // ... the player is no longer in range.
+                LightsaberInRange = false;
+            }
+        }
 
 
 		void Update ()
@@ -50,8 +62,15 @@ namespace CompleteProject
 			// Add the time since Update was last called to the timer.
 			timer += Time.deltaTime;
 
-			// If the timer exceeds the time between attacks, the player is in range and this enemy is alive...
-			if(timer >= timeBetweenAttacks && playerInRange)
+            if (timer >= timeBetweenAttacks && LightsaberInRange)
+            {
+                // ... attack.
+                Block();
+            }
+
+
+            // If the timer exceeds the time between attacks, the player is in range and this enemy is alive...
+            if (timer >= timeBetweenAttacks && playerInRange && LightsaberInRange != true)
 			{
 				// ... attack.
 				Attack ();
@@ -77,5 +96,13 @@ namespace CompleteProject
 				playerHealth.TakeDamage (attackDamage);
 			}
 		}
-	}
+        void Block()
+        {
+            // Reset the timer.
+            timer = 0f;
+
+
+
+        }
+    }
 }
