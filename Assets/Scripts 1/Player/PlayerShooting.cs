@@ -16,6 +16,7 @@ public class PlayerShooting : MonoBehaviour
     AudioSource gunAudio;
     Light gunLight;
     float effectsDisplayTime = 0.2f;
+    private RUISTposeGestureRecognizer tposeGesture;
 
 
     void Awake ()
@@ -25,6 +26,7 @@ public class PlayerShooting : MonoBehaviour
         gunLine = GetComponent <LineRenderer> ();
         gunAudio = GetComponent<AudioSource> ();
         gunLight = GetComponent<Light> ();
+        tposeGesture = GetComponentInParent<RUISTposeGestureRecognizer>();
     }
 
 
@@ -32,7 +34,7 @@ public class PlayerShooting : MonoBehaviour
     {
         timer += Time.deltaTime;
 
-		if(Input.GetButton("Fire1") && timer >= timeBetweenBullets && Time.timeScale != 0)
+		if( (Input.GetButton("Fire1")  || TposeGestureTriggered()) && timer >= timeBetweenBullets && Time.timeScale != 0)
         {
             Shoot ();
         }
@@ -82,5 +84,12 @@ public class PlayerShooting : MonoBehaviour
         {
             gunLine.SetPosition (1, shootRay.origin + shootRay.direction * range);
         }
+    }
+
+    bool TposeGestureTriggered()
+    {
+        if (tposeGesture == null) return false;
+
+        return tposeGesture.GestureIsTriggered();
     }
 }
