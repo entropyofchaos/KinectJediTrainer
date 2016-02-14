@@ -5,7 +5,7 @@ namespace CompleteProject
 {
 	public class ShotBehavior : MonoBehaviour 
 	{    
-		public float speed = 20f;
+		public float speed = 10f;
 		//GameObject player;     
 
 		// Use this for initialization

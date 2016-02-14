@@ -6,16 +6,16 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/RUIS/Examples/BowlingAlley/BowlingAlley.unity
+    path: Assets/Scripts/RUIS/Examples/BowlingAlley/BowlingAlley.unity
   - enabled: 0
-    path: Assets/RUIS/Examples/CaveExample/CaveExample.unity
+    path: Assets/Scripts/RUIS/Examples/CaveExample/CaveExample.unity
   - enabled: 0
-    path: Assets/RUIS/Examples/DisplayManagerExample/DisplayManagerExample.unity
+    path: Assets/Scripts/RUIS/Examples/DisplayManagerExample/DisplayManagerExample.unity
   - enabled: 0
-    path: Assets/RUIS/Examples/KinectTwoPlayers/KinectTwoPlayers.unity
+    path: Assets/Scripts/RUIS/Examples/KinectTwoPlayers/KinectTwoPlayers.unity
   - enabled: 0
-    path: Assets/RUIS/Examples/MinimalScene/MinimalScene.unity
+    path: Assets/Scripts/RUIS/Examples/MinimalScene/MinimalScene.unity
   - enabled: 1
-    path: Assets/RUIS/Examples/OculusRiftExample/OculusRiftExample.unity
+    path: Assets/Scripts/RUIS/Examples/OculusRiftExample/OculusRiftExample.unity
   - enabled: 1
-    path: Assets/RUIS/Scenes/calibration.unity
+    path: Assets/Scripts/RUIS/Scenes/calibration.unity
