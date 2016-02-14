@@ -26,7 +26,7 @@ public class PlayerShooting : MonoBehaviour
         gunLine = GetComponent <LineRenderer> ();
         gunAudio = GetComponent<AudioSource> ();
         gunLight = GetComponent<Light> ();
-        tposeGesture = GetComponentInParent<RUISTposeGestureRecognizer>();
+        tposeGesture = transform.parent.gameObject.GetComponentInChildren<RUISTposeGestureRecognizer>();
     }
 
 
