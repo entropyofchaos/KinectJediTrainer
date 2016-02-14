@@ -58,6 +58,7 @@ public class RUISCharacterLocomotion : MonoBehaviour
 
     private RUISJumpGestureRecognizer jumpGesture;
     private RUISTposeGestureRecognizer tposeGesture;
+    private Shockwave shockwaveGesture;
 
     public float direction { get; private set; }
     public bool jump { get; private set; }
@@ -76,6 +77,7 @@ public class RUISCharacterLocomotion : MonoBehaviour
         characterController = GetComponent<RUISCharacterController>();
         jumpGesture = GetComponentInChildren<RUISJumpGestureRecognizer>();
         tposeGesture = GetComponentInChildren<RUISTposeGestureRecognizer>();
+        shockwaveGesture = GetComponentInChildren<Shockwave>();
 
         moveWrapper = FindObjectOfType(typeof(PSMoveWrapper)) as PSMoveWrapper;
 
@@ -137,7 +139,7 @@ public class RUISCharacterLocomotion : MonoBehaviour
         if (characterController == null)
             return;
         
-        if ((Input.GetButtonDown("Jump") || JumpGestureTriggered() || TposeGestureTriggered()))
+        if ((Input.GetButtonDown("Jump") || JumpGestureTriggered() || TposeGestureTriggered() || ShockwaveGestureTriggered()))
         {
             shouldJump = true;
         }
@@ -403,6 +405,12 @@ public class RUISCharacterLocomotion : MonoBehaviour
     bool TposeGestureTriggered()
     {
         if (tposeGesture == null) return false;
+
+        return tposeGesture.GestureIsTriggered();
+    }
+    bool ShockwaveGestureTriggered()
+    {
+        if (shockwaveGesture == null) return false;
 
         return tposeGesture.GestureIsTriggered();
     }
