@@ -25,6 +25,9 @@ namespace CompleteProject
 		{
 			if (otherObj.gameObject.tag == "Player")
 				Destroy (gameObject, 1f);
-		}	
-	}
+		}
+
+       
+     }  
+    
 }

@@ -180,6 +180,7 @@ GameObject:
   - 136: {fileID: 13624698}
   - 114: {fileID: 11454576}
   - 114: {fileID: 11430850}
+  - 114: {fileID: 11437924}
   m_Layer: 0
   m_Name: R2D2
   m_TagString: Untagged
@@ -543,6 +544,22 @@ MonoBehaviour:
   sinkSpeed: 2.5
   scoreValue: 10
   deathClip: {fileID: 8300000, guid: 1d3bfb9269f136947bf8ac164cace1ff, type: 3}
+--- !u!114 &11437924
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 153682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4760cae201baa0e42a0617163910552c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerHealth: {fileID: 0}
+  shotPrefab: {fileID: 163672, guid: fcfb51ced5e88fc4a93a8eea0822d58a, type: 2}
+  spawnTime: 0.5
+  player: {fileID: 0}
+  spawnPoints: {fileID: 0}
 --- !u!114 &11454576
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -659,7 +676,15 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: shotPrefab
+      value: 
+      objectReference: {fileID: 163672, guid: fcfb51ced5e88fc4a93a8eea0822d58a, type: 2}
+    - target: {fileID: 0}
+      propertyPath: spawnTime
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 153682}
