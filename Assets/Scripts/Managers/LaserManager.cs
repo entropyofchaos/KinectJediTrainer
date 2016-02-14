@@ -15,7 +15,7 @@ namespace CompleteProject
 		void Start ()
 		{
 			// Call the Spawn function after a delay of the spawnTime and then continue to call after the same amount of time.
-			InvokeRepeating ("Spawn", Random.Range(1.0F,1.5F), Random.Range(1.0F,1.5F));
+			InvokeRepeating ("Spawn", Random.Range(1.0F,3.0F), Random.Range(1.0F,3.0F));
 			//SetRandomTime ();
 		}
 			
@@ -31,12 +31,6 @@ namespace CompleteProject
 				
 			GameObject shotObject = (GameObject)Instantiate(shotPrefab, spawnPoints.position, Quaternion.LookRotation((player.position - spawnPoints.position)));
             Rigidbody shot = shotObject.GetComponent<Rigidbody>();
-
-			//var angle = player.position - spawnPoints.position;
-			//shot.GetComponent<Rigidbody> ().AddForce (angle * shotSpeed);
 		}
-		/*void SetRandomTime(){
-			spawnTime = Random.Range (minTime, maxTime);
-		}*/
 	}
 }

@@ -85,33 +85,6 @@ NavMeshSettings:
     cellSize: 0.16666666
     manualCellSize: 0
   m_NavMeshData: {fileID: 23800000, guid: 188861b3406e9cd46bf396cdcdccefe3, type: 2}
---- !u!1 &11370795
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 11370796}
-  m_Layer: 0
-  m_Name: EnemyLaserManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &11370796
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 11370795}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 63.756443, y: 13.754169, z: -78.67517}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 14
 --- !u!1 &42597366
 GameObject:
   m_ObjectHideFlags: 0
@@ -5776,9 +5749,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1000
+  m_MaxValue: 10000
   m_WholeNumbers: 0
-  m_Value: 1000
+  m_Value: 10000
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -8236,7 +8209,12 @@ Prefab:
       propertyPath: player
       value: 
       objectReference: {fileID: 695067705}
-    m_RemovedComponents: []
+    - target: {fileID: 11447430, guid: a1eb5ecc4b3a6344cbebcd53250fb7dd, type: 2}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 695067705}
+    m_RemovedComponents:
+    - {fileID: 11422126, guid: a1eb5ecc4b3a6344cbebcd53250fb7dd, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: a1eb5ecc4b3a6344cbebcd53250fb7dd, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1806598343 stripped
@@ -8251,37 +8229,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1806598343}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5061eeaab36fa643a991909c68fc729, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dyingState: 0
-  locomotionState: 0
-  shoutState: 0
-  deadBool: 0
-  speedFloat: 0
-  sneakingBool: 0
-  shoutingBool: 0
-  playerInSightBool: 0
-  shotFloat: 0
-  aimWeightFloat: 0
-  angularSpeedFloat: 0
-  openBool: 0
---- !u!114 &1806598345
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1806598343}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8bf862ffeb7e74943a1729f1cff11eb4, type: 3}
+  m_Script: {fileID: 11500000, guid: 4760cae201baa0e42a0617163910552c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   playerHealth: {fileID: 695067711}
-  enemy: {fileID: 199106, guid: 203d56ac2c89a7c46ae13413a83a924c, type: 2}
-  spawnTime: 4
-  spawnPoints: []
-  player: {fileID: 0}
+  shotPrefab: {fileID: 116270, guid: 8ae44aac415b22d46b17d5f479d0468c, type: 2}
+  player: {fileID: 695067705}
+  spawnPoints: {fileID: 498792800}
 --- !u!4 &1810657284 stripped
 Transform:
   m_PrefabParentObject: {fileID: 495000, guid: 5485ec8e5f8e6ba449ba8ee38fa76dfa, type: 2}

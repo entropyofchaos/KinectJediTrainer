@@ -33,6 +33,7 @@ namespace CompleteProject
 			// Create an instance of the enemy prefab at the randomly selected spawn point's position and rotation.
 
 			GameObject generatedEnemy = (GameObject)Instantiate (enemy, spawnPoints [spawnPointIndex].position, spawnPoints [spawnPointIndex].rotation);
+
 			LaserManager laserManager = generatedEnemy.GetComponent<LaserManager> ();
 			laserManager.playerHealth = playerHealth;
 			GameObject eye_enemy = generatedEnemy.gameObject.transform.GetChild (0).GetChild (0).GetChild(0).GetChild(0).GetChild(0).gameObject;
