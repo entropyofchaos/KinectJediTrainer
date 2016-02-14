@@ -26,7 +26,7 @@ namespace CompleteProject
 		void OnTriggerEnter (Collider other)
 		{
 			// If the entering collider is the player...
-			if(other.gameObject == player)
+			if(other.gameObject.transform.IsChildOf(player.transform))
 			{
 				// ... the player is in range.
 				playerInRange = true;
@@ -37,7 +37,7 @@ namespace CompleteProject
 		void OnTriggerExit (Collider other)
 		{
 			// If the exiting collider is the player...
-			if(other.gameObject == player)
+			if(other.gameObject.transform.IsChildOf(player.transform))
 			{
 				// ... the player is no longer in range.
 				playerInRange = false;

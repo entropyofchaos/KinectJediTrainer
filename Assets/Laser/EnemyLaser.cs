@@ -71,13 +71,13 @@ public class EnemyLaser : MonoBehaviour {
 
 		if(Physics.Raycast (shootRay, out shootHit, range, shootableMask))
 		{
-			// PlayerHealth playerHealth = shootHit.collider.GetComponent <PlayerHealth> ();
+            // PlayerHealth playerHealth = shootHit.collider.GetComponent <PlayerHealth> ();
 
-			/*if(playerHealth != null)
-			{
-				playerHealth.TakeDamage (damagePerShot, shootHit.point);
-			}*/
-			gunLine.SetPosition (1, shootHit.point);
+            /*if(playerHealth != null)
+            {
+            	playerHealth.TakeDamage (damagePerShot, shootHit.point);
+            }*/
+            gunLine.SetPosition (1, shootHit.point);
 		}
 		else
 		{
