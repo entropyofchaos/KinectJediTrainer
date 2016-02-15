@@ -60,26 +60,26 @@ public class PlayerShooting : MonoBehaviour
         {
             distance = nearestEnemey.transform.position - transform.position;
             shootRay.direction = distance.normalized; // Normalized distance will give direction
+
+            var shape = lightningParticle.shape;
+            shape.length = distance.magnitude;
+
+            Vector3 relativePos = nearestEnemey.transform.position - transform.position;
+            Quaternion rotation = Quaternion.LookRotation(relativePos);
+            transform.rotation = rotation;
         }
         else
         {
             shootRay.direction = transform.forward;
-        }
-
-        
-
-        var shape = lightningParticle.shape;
-        shape.length = distance.magnitude;
-
-        Vector3 relativePos = nearestEnemey.transform.position - transform.position;
-        Quaternion rotation = Quaternion.LookRotation(relativePos);
-        transform.rotation = rotation;
+        }      
 
         if (Physics.Raycast (shootRay, out shootHit, range, shootableMask))
         {
             lightningParticle.Play();
             gunAudio.Play();
             Destroy(shootHit.transform.gameObject);
+            ScoreManager.score += 5;
+
             //EnemyHealth enemyHealth = shootHit.transform.gameObject.GetComponent<EnemyHealth>();
             //if(enemyHealth != null)
             //{

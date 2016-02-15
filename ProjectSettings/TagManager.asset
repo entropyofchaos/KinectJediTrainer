@@ -9,6 +9,7 @@ TagManager:
   - Lightsaber
   - EnemyManager
   - Enemy
+  - Score
   layers:
   - Default
   - TransparentFX

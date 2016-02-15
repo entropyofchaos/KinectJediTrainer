@@ -7,25 +7,30 @@ namespace CompleteProject
 public class PlayerHealing : MonoBehaviour {
 
 	PlayerHealth playerhealth;
-	int currenthealth;
+	//int currenthealth;
 	public ParticleSystem healingParticle;
 	public Slider healthSlider; 
 
 
 	// Use this for initialization
 	void Start () {
-		currenthealth = playerhealth.currentHealth;
+		//currenthealth = playerhealth.currentHealth;
 		healingParticle = GetComponent<ParticleSystem> ();
+		playerhealth = GetComponent<PlayerHealth> ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown (KeyCode.H)) {
-			healingParticle.Stop ();
-			healingParticle.Play ();
-			currenthealth = playerhealth.startingHealth;
-			healthSlider.value = currenthealth;
+		if (Input.GetKey (KeyCode.H)) {
+				healing ();
 		}
 	}
+		void healing(){
+			//currenthealth = playerhealth.startingHealth;
+			healthSlider.value = playerhealth.startingHealth;
+			playerhealth.currentHealth = playerhealth.startingHealth;
+			healingParticle.Stop ();
+			healingParticle.Play ();
+		}
  }
 }

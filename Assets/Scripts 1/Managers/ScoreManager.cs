@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
 
-public class ScoreManager : MonoBehaviour
+public class ScoreManager1 : MonoBehaviour
 {
     public static int score;
 
@@ -19,6 +18,6 @@ public class ScoreManager : MonoBehaviour
 
     void Update ()
     {
-        text.text = "Score: " + score;
+        text.text = score.ToString();
     }
 }
