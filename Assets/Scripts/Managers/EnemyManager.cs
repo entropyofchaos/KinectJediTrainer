@@ -20,23 +20,24 @@ namespace CompleteProject
 
 
         void Spawn ()
-        {
-            // If the player has no health left...
-           if(playerHealth.currentHealth <= 0f)
-            {
-                // ... exit the function.
-                return;
-            }
+		{
+			// If the player has no health left...
+			if (playerHealth.currentHealth <= 0f) {
+				// ... exit the function.
+				return;
+			}
 
-            // Find a random index between zero and one less than the number of spawn points.
-            int spawnPointIndex = Random.Range (0, spawnPoints.Length);
+			// Find a random index between zero and one less than the number of spawn points.
+			int spawnPointIndex = Random.Range (0, spawnPoints.Length);
 
-            // Create an instance of the enemy prefab at the randomly selected spawn point's position and rotation.
+			// Create an instance of the enemy prefab at the randomly selected spawn point's position and rotation.
 
-			GameObject generatedEnemy = (GameObject)Instantiate (enemy, spawnPoints[spawnPointIndex].position, spawnPoints[spawnPointIndex].rotation);
-            LaserManager laserManager = generatedEnemy.GetComponent<LaserManager>();
-            laserManager.playerHealth = playerHealth;
-            laserManager.spawnPoints = generatedEnemy.transform.FindChild("eye_3");
+			GameObject generatedEnemy = (GameObject)Instantiate (enemy, spawnPoints [spawnPointIndex].position, spawnPoints [spawnPointIndex].rotation);
+
+			LaserManager laserManager = generatedEnemy.GetComponent<LaserManager> ();
+			laserManager.playerHealth = playerHealth;
+			GameObject eye_enemy = generatedEnemy.gameObject.transform.GetChild (0).GetChild (0).GetChild(0).GetChild(0).GetChild(0).gameObject;
+			laserManager.spawnPoints = eye_enemy.transform;
             laserManager.player = player;
 
         }
