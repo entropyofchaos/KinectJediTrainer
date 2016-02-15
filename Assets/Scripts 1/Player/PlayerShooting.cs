@@ -4,7 +4,7 @@ public class PlayerShooting : MonoBehaviour
 {
     public int damagePerShot = 20;
     public float timeBetweenBullets = 0.15f;
-    public float range = 100f;
+    public float range = 1000f;
 
 
     float timer;
@@ -68,8 +68,18 @@ public class PlayerShooting : MonoBehaviour
         gunLine.enabled = true;
         gunLine.SetPosition (0, transform.position);
 
+        GameObject nearestEnemey = findNearestTarget();
         shootRay.origin = transform.position;
-        shootRay.direction = transform.forward;
+
+        if (nearestEnemey != null)
+        {
+            Vector3 direction = nearestEnemey.transform.position - transform.position;
+            shootRay.direction = direction.normalized;
+        }
+        else
+        {
+            shootRay.direction = transform.forward;
+        }
 
         if(Physics.Raycast (shootRay, out shootHit, range, shootableMask))
         {
@@ -91,5 +101,27 @@ public class PlayerShooting : MonoBehaviour
         if (tposeGesture == null) return false;
 
         return tposeGesture.GestureIsTriggered();
+    }
+
+    GameObject findNearestTarget()
+    {
+        GameObject[] targets = GameObject.FindGameObjectsWithTag("Enemy");
+
+        GameObject mytarget = null;
+        float maxdistance = 1000;
+
+        foreach (GameObject enemy in targets)
+        {
+            //work out which item is the closest and shoot at it, or find out which enemy has the most armour left or the most power and shoot it.
+
+            float distance = Vector3.Distance(enemy.transform.position, transform.position);
+            if (distance < maxdistance)
+            {
+                mytarget = enemy;
+                maxdistance = distance;
+            }
+        }
+
+        return mytarget;
     }
 }
