@@ -8,20 +8,30 @@ public class CameraSwitch : MonoBehaviour {
 
 
 	// Use this for initialization
-	void Start () {
-		
-
+	void Start(){
+		ToggleCameraOn();
 	}
 
-	void update(){
-		if (Input.GetKeyDown("1"))
-		{
-			camera2.GetComponent<Camera>().enabled = false;
-			camera1.GetComponent<Camera>().enabled = true;
+	void ToggleCameraOn ()
+	{
+		camera1.gameObject.SetActive(true);
+		camera2.gameObject.SetActive(false);
+	}
+
+	void ToggleCameraOff ()
+	{
+		camera1.gameObject.SetActive(false);
+		camera2.gameObject.SetActive(true);
+	}
+
+
+	void Update() {
+		if (Input.GetKeyDown (KeyCode.C)) {
+			ToggleCameraOff ();
 		}
-		if (Input.GetKeyDown("2")){
-			camera1.GetComponent<Camera>().enabled = false;
-			camera2.GetComponent<Camera>().enabled = true;
+		if (Input.GetKeyUp (KeyCode.C)) {
+			ToggleCameraOn ();
 		}
+			//Invoke("ToggleCameraOn", 5);
 	}
 }
