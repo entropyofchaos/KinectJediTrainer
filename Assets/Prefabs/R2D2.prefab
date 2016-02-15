@@ -557,7 +557,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerHealth: {fileID: 0}
   shotPrefab: {fileID: 163672, guid: fcfb51ced5e88fc4a93a8eea0822d58a, type: 2}
-  spawnTime: 0.5
   player: {fileID: 0}
   spawnPoints: {fileID: 0}
 --- !u!114 &11454576
