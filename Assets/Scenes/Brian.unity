@@ -1664,7 +1664,7 @@ ParticleSystem:
         m_RotationOrder: 4
       minMaxState: 0
     curve:
-      scalar: 0.7853982
+      scalar: 0.7853981
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -3102,7 +3102,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 495000, guid: 5485ec8e5f8e6ba449ba8ee38fa76dfa, type: 2}
       propertyPath: m_LocalRotation.y
-      value: 0.11708763
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 495000, guid: 5485ec8e5f8e6ba449ba8ee38fa76dfa, type: 2}
       propertyPath: m_LocalRotation.z
@@ -3110,11 +3110,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 495000, guid: 5485ec8e5f8e6ba449ba8ee38fa76dfa, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 0.9931216
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 495000, guid: 5485ec8e5f8e6ba449ba8ee38fa76dfa, type: 2}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 12077926, guid: 5485ec8e5f8e6ba449ba8ee38fa76dfa, type: 2}
       propertyPath: m_Materials.Array.data[0]
@@ -3511,6 +3511,7 @@ Transform:
   - {fileID: 1690529989}
   - {fileID: 2088584927}
   - {fileID: 445664602}
+  - {fileID: 1949531025}
   - {fileID: 1668549428}
   - {fileID: 1834963029}
   - {fileID: 1669925686}
@@ -6352,7 +6353,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: aee94dae469f3534ab2208fd13893b4c, type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 11400006, guid: aee94dae469f3534ab2208fd13893b4c, type: 2}
       propertyPath: wandStart
@@ -6782,7 +6783,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 695067705}
-  m_RootOrder: 4
+  m_RootOrder: 5
 --- !u!114 &1668549429
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8931,7 +8932,7 @@ Transform:
   - {fileID: 631140759}
   - {fileID: 1581244467}
   m_Father: {fileID: 695067705}
-  m_RootOrder: 5
+  m_RootOrder: 6
 --- !u!114 &1834963030
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9149,6 +9150,67 @@ Transform:
   - {fileID: 1899395396}
   m_Father: {fileID: 1321444952}
   m_RootOrder: 0
+--- !u!1 &1949531024
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1949531025}
+  - 114: {fileID: 1949531027}
+  - 114: {fileID: 1949531026}
+  m_Layer: 0
+  m_Name: BlastGestureRecognizer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1949531025
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1949531024}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 695067705}
+  m_RootOrder: 4
+--- !u!114 &1949531026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1949531024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 680a78d18bbe22642a40357e6b890ae1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerId: 0
+  bodyTrackingDeviceID: 0
+  maxMovementVelocity: 1
+  timeBetweenRecognitions: 0.75
+  handPositionMinDistanceInfront: 0.2
+  handPositionSideToSideThreshold: 0.2
+  handPositionUpDownThreshold: 0.3
+  requiredConfidence: 1
+  leftHandWithPointTracker: {fileID: 920978262}
+--- !u!114 &1949531027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1949531024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c5dba8c14fa8e6448b9a1a16d33fe05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bufferLength: 0.1
 --- !u!1 &1965285705
 GameObject:
   m_ObjectHideFlags: 0

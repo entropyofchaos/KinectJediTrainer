@@ -4,29 +4,28 @@ public class PlayerShooting : MonoBehaviour
 {
     public int damagePerShot = 20;
     public float timeBetweenBullets = 0.15f;
-    public float range = 1000f;
+    public float range = 100;
 
 
     float timer;
     Ray shootRay;
     RaycastHit shootHit;
     int shootableMask;
-	ParticleSystem LightningParticle;
+	ParticleSystem lightningParticle;
     LineRenderer gunLine;
     AudioSource gunAudio;
     Light gunLight;
     float effectsDisplayTime = 0.2f;
-    private RUISTposeGestureRecognizer tposeGesture;
-
+    private RUISBlastGestureRecognizer blastGesture;
 
     void Awake ()
     {
 		shootableMask = LayerMask.GetMask ("Shootable");
-		LightningParticle = GetComponentInChildren<ParticleSystem> ();
+		lightningParticle = GetComponentInChildren<ParticleSystem> ();
         gunLine = GetComponent <LineRenderer> ();
         gunAudio = GetComponent<AudioSource> ();
         gunLight = GetComponent<Light> ();
-        tposeGesture = transform.parent.gameObject.GetComponentInChildren<RUISTposeGestureRecognizer>();
+        blastGesture = transform.parent.gameObject.GetComponentInChildren<RUISBlastGestureRecognizer>();
     }
 
 
@@ -34,7 +33,7 @@ public class PlayerShooting : MonoBehaviour
     {
         timer += Time.deltaTime;
 
-		if( (Input.GetButton("Fire1")  || TposeGestureTriggered()) && timer >= timeBetweenBullets && Time.timeScale != 0)
+		if( (Input.GetButton("Fire1")  || BlastGestureTriggered()) && timer >= timeBetweenBullets && Time.timeScale != 0)
         {
             Shoot ();
         }
@@ -58,36 +57,44 @@ public class PlayerShooting : MonoBehaviour
     {
         timer = 0f;
 
+        lightningParticle.Stop();
         gunAudio.Play ();
-
-        gunLight.enabled = true;
-
-		LightningParticle.Stop ();
-		LightningParticle.Play ();
 
         gunLine.enabled = true;
         gunLine.SetPosition (0, transform.position);
 
         GameObject nearestEnemey = findNearestTarget();
         shootRay.origin = transform.position;
+        Vector3 distance = new Vector3(3, 3, 3);
 
         if (nearestEnemey != null)
         {
-            Vector3 direction = nearestEnemey.transform.position - transform.position;
-            shootRay.direction = direction.normalized;
+            distance = nearestEnemey.transform.position - transform.position;
+            shootRay.direction = distance.normalized; // Normalized distance will give direction
         }
         else
         {
             shootRay.direction = transform.forward;
         }
 
-        if(Physics.Raycast (shootRay, out shootHit, range, shootableMask))
+        
+
+        var shape = lightningParticle.shape;
+        shape.length = distance.magnitude;
+
+        Vector3 relativePos = nearestEnemey.transform.position - transform.position;
+        Quaternion rotation = Quaternion.LookRotation(relativePos);
+        transform.rotation = rotation;
+
+        if (Physics.Raycast (shootRay, out shootHit, range, shootableMask))
         {
-            EnemyHealth enemyHealth = shootHit.collider.GetComponent <EnemyHealth> ();
-            if(enemyHealth != null)
-            {
-                enemyHealth.TakeDamage (damagePerShot, shootHit.point);
-            }
+            lightningParticle.Play();
+            Destroy(shootHit.transform.gameObject);
+            //EnemyHealth enemyHealth = shootHit.transform.gameObject.GetComponent<EnemyHealth>();
+            //if(enemyHealth != null)
+            //{
+            //    enemyHealth.TakeDamage (damagePerShot, shootHit.point);
+            //}
             gunLine.SetPosition (1, shootHit.point);
         }
         else
@@ -96,11 +103,17 @@ public class PlayerShooting : MonoBehaviour
         }
     }
 
-    bool TposeGestureTriggered()
+    bool BlastGestureTriggered()
     {
-        if (tposeGesture == null) return false;
-
-        return tposeGesture.GestureIsTriggered();
+        if (blastGesture == null || !blastGesture.GestureIsTriggered())
+        {
+            return false;
+        }
+        else
+        {
+            transform.position = blastGesture.GetTriggeredHand().transform.position;
+            return true;
+        }
     }
 
     GameObject findNearestTarget()
@@ -108,7 +121,7 @@ public class PlayerShooting : MonoBehaviour
         GameObject[] targets = GameObject.FindGameObjectsWithTag("Enemy");
 
         GameObject mytarget = null;
-        float maxdistance = 1000;
+        float maxdistance = 100;
 
         foreach (GameObject enemy in targets)
         {
