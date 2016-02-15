@@ -12,13 +12,13 @@ public class CameraSwitch : MonoBehaviour {
 		ToggleCameraOn();
 	}
 
-	void ToggleCameraOn ()
+	public void ToggleCameraOn ()
 	{
 		camera1.gameObject.SetActive(true);
 		camera2.gameObject.SetActive(false);
 	}
 
-	void ToggleCameraOff ()
+	public void ToggleCameraOff ()
 	{
 		camera1.gameObject.SetActive(false);
 		camera2.gameObject.SetActive(true);

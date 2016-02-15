@@ -30,10 +30,10 @@ namespace CompleteProject
 			}
 		}
 
-		void healing(){
+		public void healing(){
 			healingParticle.Stop ();
 			healingParticle.Play ();
-			healingParticle.loop = true;
+			healingParticle.loop = false;
 			playerhealth.currentHealth = playerhealth.startingHealth;
 			healthSlider.value = playerhealth.startingHealth;
 		}

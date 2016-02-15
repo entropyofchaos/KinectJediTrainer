@@ -9,17 +9,19 @@ Licensing  :   RUIS is distributed under the LGPL Version 3 license.
 
 using UnityEngine;
 using System.Collections;
+using CompleteProject;
 
 [RequireComponent(typeof(RUISPointTracker))]
 public class RUISTposeGestureRecognizer : RUISGestureRecognizer
 {
     public int playerId = 0;
-	public int bodyTrackingDeviceID = 0;
+    public int bodyTrackingDeviceID = 0;
 
     public float maxMovementVelocity = 1.0f;
     public float timeBetweenRecognitions = 1.0f;
     public float handPositionDifferenceThreshold = 0.1f;
     public float requiredConfidence = 1.0f;
+    public PlayerHealing heal;
 
     public enum State
     {
@@ -51,28 +53,30 @@ public class RUISTposeGestureRecognizer : RUISGestureRecognizer
 
     public void Awake()
     {
-		skeletonController = FindObjectOfType(typeof(RUISSkeletonController)) as RUISSkeletonController;
+        skeletonController = FindObjectOfType(typeof(RUISSkeletonController)) as RUISSkeletonController;
         pointTrackerLeftHand = leftHandWithPointTracker.GetComponent<RUISPointTracker>();
         pointTrackerRightHand = rightHandWithPointTracker.GetComponent<RUISPointTracker>();
         skeletonManager = FindObjectOfType(typeof(RUISSkeletonManager)) as RUISSkeletonManager;
-		ResetProgress();
+        ResetProgress();
     }
-	public void Start() {
-		
-		bodyTrackingDeviceID = skeletonController.bodyTrackingDeviceID;
-	}
+    public void Start()
+    {
+
+        bodyTrackingDeviceID = skeletonController.bodyTrackingDeviceID;
+    }
     public void Update()
     {
         if (!skeletonManager) return;
 
-		bool currentIsTracking = skeletonManager.skeletons[bodyTrackingDeviceID, playerId].isTracking;
+        bool currentIsTracking = skeletonManager.skeletons[bodyTrackingDeviceID, playerId].isTracking;
 
         if (!currentIsTracking)
         {
             previousIsTracking = false;
             isTrackingBufferTimeFinished = false;
             return;
-        } else if (currentIsTracking != previousIsTracking)
+        }
+        else if (currentIsTracking != previousIsTracking)
         {
             StartCoroutine("StartCountdownTillGestureEnable");
         }
@@ -99,12 +103,12 @@ public class RUISTposeGestureRecognizer : RUISGestureRecognizer
     {
         return gestureEnabled && currentState == State.MakingATPose;
     }
-    
-	public override bool GestureWasTriggered()
-	{
-		return false; // Not implemented
-	}
-	
+
+    public override bool GestureWasTriggered()
+    {
+        return false; // Not implemented
+    }
+
     public override float GetGestureProgress()
     {
         return (gestureEnabled && currentState == State.MakingATPose) ? 1 : 0;
@@ -148,14 +152,14 @@ public class RUISTposeGestureRecognizer : RUISGestureRecognizer
 
     private void DoWaitingForTPose()
     {
-		if (skeletonManager.skeletons[bodyTrackingDeviceID, playerId].leftHand.positionConfidence < requiredConfidence ||
-		    skeletonManager.skeletons[bodyTrackingDeviceID, playerId].rightHand.positionConfidence < requiredConfidence)
+        if (skeletonManager.skeletons[bodyTrackingDeviceID, playerId].leftHand.positionConfidence < requiredConfidence ||
+            skeletonManager.skeletons[bodyTrackingDeviceID, playerId].rightHand.positionConfidence < requiredConfidence)
         {
             return;
         }
 
-		leftHandPos = skeletonManager.skeletons[bodyTrackingDeviceID, playerId].leftHand.position;
-		rightHandPos = skeletonManager.skeletons[bodyTrackingDeviceID, playerId].rightHand.position;
+        leftHandPos = skeletonManager.skeletons[bodyTrackingDeviceID, playerId].leftHand.position;
+        rightHandPos = skeletonManager.skeletons[bodyTrackingDeviceID, playerId].rightHand.position;
         leftShoulderPos = skeletonManager.skeletons[bodyTrackingDeviceID, playerId].leftShoulder.position;
         rightShoulderPos = skeletonManager.skeletons[bodyTrackingDeviceID, playerId].rightShoulder.position;
 
@@ -171,6 +175,7 @@ public class RUISTposeGestureRecognizer : RUISGestureRecognizer
             System.Math.Abs(pointTrackerLeftHand.averageVelocity.y) <= maxMovementVelocity &&
             System.Math.Abs(pointTrackerRightHand.averageVelocity.y) <= maxMovementVelocity)
         {
+            heal.healing();
             currentState = State.MakingATPose;
             timeCounter = 0;
 
@@ -185,9 +190,9 @@ public class RUISTposeGestureRecognizer : RUISGestureRecognizer
 
         isTrackingBufferTimeFinished = true;
     }
-    
-	public override bool IsBinaryGesture()
-	{
-		return true;
-	}
+
+    public override bool IsBinaryGesture()
+    {
+        return true;
+    }
 }
