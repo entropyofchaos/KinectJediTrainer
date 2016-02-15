@@ -3743,10 +3743,10 @@ Transform:
   m_Children:
   - {fileID: 1846155009}
   - {fileID: 1810657284}
-  - {fileID: 1690529989}
+  - {fileID: 1913952521}
   - {fileID: 1669925686}
   - {fileID: 1824806240}
-  - {fileID: 1913952521}
+  - {fileID: 1690529989}
   - {fileID: 1753478445}
   - {fileID: 445664602}
   - {fileID: 1949531025}
@@ -5965,7 +5965,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 7e2baee5779349340b6a78274c032bf7, type: 2}
       propertyPath: m_RootOrder
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 11400014, guid: 7e2baee5779349340b6a78274c032bf7, type: 2}
       propertyPath: rootDevice
@@ -5997,6 +5997,10 @@ Prefab:
       objectReference: {fileID: 631140760}
     - target: {fileID: 11400012, guid: 7e2baee5779349340b6a78274c032bf7, type: 2}
       propertyPath: isStereo
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400034, guid: 7e2baee5779349340b6a78274c032bf7, type: 2}
+      propertyPath: resetTrackerOnLoad
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
