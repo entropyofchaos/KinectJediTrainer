@@ -166,8 +166,8 @@ public class RUISBlastGestureRecognizer : RUISGestureRecognizer
         rightShoulderPos = skeletonManager.skeletons[bodyTrackingDeviceID, playerId].rightShoulder.position;
         spinePos = skeletonManager.skeletons[bodyTrackingDeviceID, playerId].shoulderSpine.position;
 
-        Vector3 leftHandDiffFromSpine = spinePos - leftHandPos;
-        Vector3 rightHandDiffFromSpine = spinePos - rightHandPos;
+        Vector3 leftHandDiffFromSpine = leftShoulderPos - leftHandPos;
+        Vector3 rightHandDiffFromSpine = rightShoulderPos - rightHandPos;
         bool bastBeingMade = false;
 
         if (0.0 <= System.Math.Abs(leftHandDiffFromSpine.y) && System.Math.Abs(leftHandDiffFromSpine.y) <= handPositionUpDownThreshold &&

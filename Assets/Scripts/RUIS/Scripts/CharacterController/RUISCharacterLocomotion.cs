@@ -9,7 +9,10 @@ Licensing  :   RUIS is distributed under the LGPL Version 3 license.
 
 using UnityEngine;
 using System.Collections;
+using CompleteProject;
 
+
+[RequireComponent(typeof(CameraSwitch))]
 [RequireComponent(typeof(RUISCharacterController))]
 [RequireComponent(typeof(Rigidbody))]
 public class RUISCharacterLocomotion : MonoBehaviour
@@ -37,6 +40,8 @@ public class RUISCharacterLocomotion : MonoBehaviour
     public float aerialMobility = 1.5f;
     public float aerialDrag = 4;
 
+    //public CameraSwitch seeing;
+
     private Vector3 velocity = new Vector3(0, 0, 0);
     private Vector3 velocityChange = new Vector3(0, 0, 0);
     private Vector3 proposedVelocity = new Vector3(0, 0, 0);
@@ -59,6 +64,7 @@ public class RUISCharacterLocomotion : MonoBehaviour
     private RUISJumpGestureRecognizer jumpGesture;
     private Shockwave shockwaveGesture;
     private RUISTposeGestureRecognizer tposeGesture;
+    //private FutureGestureRecognizer futureGesture;
 
     public float direction { get; private set; }
     public bool jump { get; private set; }
@@ -78,8 +84,8 @@ public class RUISCharacterLocomotion : MonoBehaviour
         jumpGesture = GetComponentInChildren<RUISJumpGestureRecognizer>();
         shockwaveGesture = GetComponentInChildren<Shockwave>();
         tposeGesture = GetComponentInChildren<RUISTposeGestureRecognizer>();
-        futureGesture = GetComponentInChildren<FutureGestureRecognizer>();
-
+        //futureGesture = GetComponentInChildren<FutureGestureRecognizer>();
+        //seeing = futureGesture.seeing;
         moveWrapper = FindObjectOfType(typeof(PSMoveWrapper)) as PSMoveWrapper;
 
         try
@@ -140,7 +146,7 @@ public class RUISCharacterLocomotion : MonoBehaviour
         //if (characterController == null)
         //    return;
 
-        if ((Input.GetButtonDown("Jump") || JumpGestureTriggered() || ShockwaveGestureTriggered() || TPoseGestureTriggered() || FutureGestureTriggered()))
+        if (Input.GetButtonDown("Jump") || JumpGestureTriggered() || ShockwaveGestureTriggered())
         {
             shouldJump = true;
         }
@@ -414,11 +420,11 @@ public class RUISCharacterLocomotion : MonoBehaviour
 
         return tposeGesture.GestureIsTriggered();
     }
-    bool FutureGestureTriggered()
-    {
-        if (futureGesture == null) return false;
+    //bool FutureGestureTriggered()
+    //{
+    //    if (futureGesture == null) return false;
 
-        return futureGesture.GestureIsTriggered();
-    }
+    //    return futureGesture.GestureIsTriggered();
+    //}
 }
 

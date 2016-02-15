@@ -167,21 +167,18 @@ public class FutureGestureRecognizer : RUISGestureRecognizer
         rightShoulderPos = skeletonManager.skeletons[bodyTrackingDeviceID, playerId].rightShoulder.position;
         headPos = skeletonManager.skeletons[bodyTrackingDeviceID, playerId].head.position;
 
-        print("LeftHand = " + leftHandPos + "\nRightHand = " + rightHandPos + "\nLeftShoulder = " + leftShoulderPos + "\nRightShoulder = " + rightShoulderPos);
+        //print("LeftHand = " + leftHandPos + "\nRightHand = " + rightHandPos + "\nLeftShoulder = " + leftShoulderPos + "\nRightShoulder = " + rightShoulderPos);
 
         Vector3 leftHandDiffFromShoulder = leftShoulderPos - leftHandPos;
         Vector3 rightHandDiffFromShoulder = rightShoulderPos - rightHandPos;
         Vector3 leftHandDiffFromHead = headPos - leftHandPos;
 
 
-        if (0.0 <= System.Math.Abs(leftHandDiffFromShoulder.y) && System.Math.Abs(leftHandDiffFromShoulder.y) <= handPositionDifferenceThreshold &&
-            0.0 <= System.Math.Abs(leftHandDiffFromShoulder.z) && System.Math.Abs(leftHandDiffFromShoulder.z) <= handPositionDifferenceThreshold &&
-            0.0 <= System.Math.Abs(rightHandDiffFromShoulder.y) && System.Math.Abs(rightHandDiffFromShoulder.y) <= handPositionDifferenceThreshold &&
-            0.0 <= System.Math.Abs(rightHandDiffFromShoulder.z) && System.Math.Abs(rightHandDiffFromShoulder.z) <= handPositionDifferenceThreshold &&
-            System.Math.Abs(pointTrackerLeftHand.averageVelocity.y) <= maxMovementVelocity &&
-            System.Math.Abs(pointTrackerRightHand.averageVelocity.y) <= maxMovementVelocity)
+        if (0.0 <= System.Math.Abs(leftHandDiffFromHead.y) && System.Math.Abs(leftHandDiffFromHead.y) <= handPositionDifferenceThreshold &&
+            0.0 <= System.Math.Abs(leftHandDiffFromHead.z) && System.Math.Abs(leftHandDiffFromHead.z) <= handPositionDifferenceThreshold &&
+            0.0 <= System.Math.Abs(leftHandDiffFromHead.x) && System.Math.Abs(leftHandDiffFromHead.x) <= handPositionDifferenceThreshold
+           )
         {
-            seeing.ToggleCameraOn();
             currentState = State.MakingFuture;
             timeCounter = 0;
 

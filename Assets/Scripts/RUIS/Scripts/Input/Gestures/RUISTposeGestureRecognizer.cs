@@ -163,7 +163,7 @@ public class RUISTposeGestureRecognizer : RUISGestureRecognizer
         leftShoulderPos = skeletonManager.skeletons[bodyTrackingDeviceID, playerId].leftShoulder.position;
         rightShoulderPos = skeletonManager.skeletons[bodyTrackingDeviceID, playerId].rightShoulder.position;
 
-        print("LeftHand = " + leftHandPos + "\nRightHand = " + rightHandPos + "\nLeftShoulder = " + leftShoulderPos + "\nRightShoulder = " + rightShoulderPos);
+        //print("LeftHand = " + leftHandPos + "\nRightHand = " + rightHandPos + "\nLeftShoulder = " + leftShoulderPos + "\nRightShoulder = " + rightShoulderPos);
 
         Vector3 leftHandDiffFromShoulder = leftShoulderPos - leftHandPos;
         Vector3 rightHandDiffFromShoulder = rightShoulderPos - rightHandPos;
