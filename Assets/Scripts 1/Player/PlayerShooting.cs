@@ -12,9 +12,7 @@ public class PlayerShooting : MonoBehaviour
     RaycastHit shootHit;
     int shootableMask;
 	ParticleSystem lightningParticle;
-    LineRenderer gunLine;
     AudioSource gunAudio;
-    Light gunLight;
     float effectsDisplayTime = 0.2f;
     private RUISBlastGestureRecognizer blastGesture;
 
@@ -22,9 +20,7 @@ public class PlayerShooting : MonoBehaviour
     {
 		shootableMask = LayerMask.GetMask ("Shootable");
 		lightningParticle = GetComponentInChildren<ParticleSystem> ();
-        gunLine = GetComponent <LineRenderer> ();
         gunAudio = GetComponent<AudioSource> ();
-        gunLight = GetComponent<Light> ();
         blastGesture = transform.parent.gameObject.GetComponentInChildren<RUISBlastGestureRecognizer>();
     }
 
@@ -47,9 +43,6 @@ public class PlayerShooting : MonoBehaviour
 
     public void DisableEffects ()
     {
-        gunLine.enabled = false;
-        gunLight.enabled = false;
-
     }
 
 
@@ -58,10 +51,6 @@ public class PlayerShooting : MonoBehaviour
         timer = 0f;
 
         lightningParticle.Stop();
-        gunAudio.Play ();
-
-        gunLine.enabled = true;
-        gunLine.SetPosition (0, transform.position);
 
         GameObject nearestEnemey = findNearestTarget();
         shootRay.origin = transform.position;
@@ -89,17 +78,13 @@ public class PlayerShooting : MonoBehaviour
         if (Physics.Raycast (shootRay, out shootHit, range, shootableMask))
         {
             lightningParticle.Play();
+            gunAudio.Play();
             Destroy(shootHit.transform.gameObject);
             //EnemyHealth enemyHealth = shootHit.transform.gameObject.GetComponent<EnemyHealth>();
             //if(enemyHealth != null)
             //{
             //    enemyHealth.TakeDamage (damagePerShot, shootHit.point);
             //}
-            gunLine.SetPosition (1, shootHit.point);
-        }
-        else
-        {
-            gunLine.SetPosition (1, shootRay.origin + shootRay.direction * range);
         }
     }
 

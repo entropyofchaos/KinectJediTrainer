@@ -134,8 +134,8 @@ public class RUISCharacterLocomotion : MonoBehaviour
         jump = false;
 
         //if(characterController == null || !characterController.grounded)
-        if (characterController == null)
-            return;
+        //if (characterController == null)
+        //    return;
         
         if ((Input.GetButtonDown("Jump") || JumpGestureTriggered() || ShockwaveGestureTriggered()))
         {

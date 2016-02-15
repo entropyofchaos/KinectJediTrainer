@@ -16,6 +16,8 @@ public class DetonatorForce : DetonatorComponent
 	public float power;
 	public GameObject fireObject;
 	public float fireObjectLife;
+
+    public GameObject player;
 	
 	private Collider[] _colliders;
 	private GameObject _tempFireObject;
@@ -56,7 +58,7 @@ public class DetonatorForce : DetonatorComponent
 
 			foreach (Collider hit in _colliders) 
 			{
-				if (!hit)
+				if (!hit || hit.transform.IsChildOf(player.transform))
 				{
 					continue;
 				}

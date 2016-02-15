@@ -14,16 +14,22 @@ namespace CompleteProject
 
 		void Start ()
 		{
-			// Call the Spawn function after a delay of the spawnTime and then continue to call after the same amount of time.
-			InvokeRepeating ("Spawn", Random.Range(1.0F,3.0F), Random.Range(1.0F,3.0F));
+            // Call the Spawn function after a delay of the spawnTime and then continue to call after the same amount of time.
+            Vector3 dist = player.position - transform.position;
+            if (dist.magnitude < 100)
+            {
+                InvokeRepeating("Spawn", Random.Range(1.0F, 3.0F), Random.Range(1.0F, 3.0F));
+            }
 			//SetRandomTime ();
 		}
 			
 
 		void Spawn ()
 		{
-			// If the player has no health left...
-			if(playerHealth.currentHealth <= 0f)
+            // If the player has no health left...
+            
+
+            if (playerHealth.currentHealth <= 0f )
 			{
 				// ... exit the function.
 				return;
