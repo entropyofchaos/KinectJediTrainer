@@ -2734,7 +2734,7 @@ GameObject:
   - 4: {fileID: 460976128}
   - 218: {fileID: 460976127}
   - 154: {fileID: 460976126}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Terrain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2857,6 +2857,10 @@ Prefab:
     - target: {fileID: 191242, guid: adad0ff015b1c13408ae58465009fc9a, type: 2}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 191242, guid: adad0ff015b1c13408ae58465009fc9a, type: 2}
+      propertyPath: m_Layer
+      value: 14
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: adad0ff015b1c13408ae58465009fc9a, type: 2}
@@ -4413,7 +4417,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 14
 --- !u!1 &844874570
 GameObject:
   m_ObjectHideFlags: 0
