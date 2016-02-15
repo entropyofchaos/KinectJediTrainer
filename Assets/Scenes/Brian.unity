@@ -2492,7 +2492,7 @@ Prefab:
       objectReference: {fileID: 100074, guid: be66986effd141b4992d2d78be127139, type: 3}
     - target: {fileID: 11467540, guid: a1eb5ecc4b3a6344cbebcd53250fb7dd, type: 2}
       propertyPath: spawnTime
-      value: 10
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 11422126, guid: a1eb5ecc4b3a6344cbebcd53250fb7dd, type: 2}
       propertyPath: spawnTime
@@ -2565,7 +2565,7 @@ Prefab:
     - target: {fileID: 11467540, guid: a1eb5ecc4b3a6344cbebcd53250fb7dd, type: 2}
       propertyPath: player
       value: 
-      objectReference: {fileID: 1183471582}
+      objectReference: {fileID: 695067705}
     - target: {fileID: 11447430, guid: a1eb5ecc4b3a6344cbebcd53250fb7dd, type: 2}
       propertyPath: player
       value: 
@@ -2590,13 +2590,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 442808325}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4760cae201baa0e42a0617163910552c, type: 3}
+  m_Script: {fileID: 11500000, guid: 07de5d124d22d4b429a5a3960e3e3567, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   playerHealth: {fileID: 695067711}
-  shotPrefab: {fileID: 116270, guid: 8ae44aac415b22d46b17d5f479d0468c, type: 2}
-  player: {fileID: 695067705}
-  spawnPoints: {fileID: 498792800}
+  enemy: {fileID: 116270, guid: 8ae44aac415b22d46b17d5f479d0468c, type: 2}
+  spawnPoints:
+  - {fileID: 498792800}
+  spawnTime: 3
 --- !u!1 &445664601
 GameObject:
   m_ObjectHideFlags: 0
@@ -3008,7 +3009,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 498792799}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 15.97, y: 0, z: -17.5}
+  m_LocalPosition: {x: 41.3, y: 0, z: -17.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -8958,6 +8959,47 @@ MonoBehaviour:
   changePivotIfNoKinect: 1
   onlyRazerOffset: {x: 0, y: 0.2, z: 0.5}
   razerWandParent: {fileID: 0}
+--- !u!1 &1846155007
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1846155009}
+  - 114: {fileID: 1846155008}
+  m_Layer: 0
+  m_Name: CameraSwitch
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1846155008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1846155007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3e0c4c61577067438aacdd26494883c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camera1: {fileID: 0}
+  camera2: {fileID: 0}
+--- !u!4 &1846155009
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1846155007}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.8364797, y: 1.3608818, z: -4.222166}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 17
 --- !u!1 &1848152982
 GameObject:
   m_ObjectHideFlags: 0
